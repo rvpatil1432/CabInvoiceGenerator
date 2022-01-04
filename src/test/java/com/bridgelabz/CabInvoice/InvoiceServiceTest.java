@@ -3,6 +3,7 @@ package com.bridgelabz.CabInvoice;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.bridgelabz.model.InvoiceSummary;
 import com.bridgelabz.model.Ride;
 import com.bridgelabz.service.InvoiceService;
 
@@ -34,9 +35,9 @@ public class InvoiceServiceTest {
         Ride[] rides = {new Ride(2.0, 5),
                 new Ride(1.0, 5),
                 new Ride(0.1, 1)};
-    
-        double totalFare = invoiceService.calculateFare(rides);
-        Assert.assertEquals(45.0,totalFare,0.0);
+        InvoiceSummary expectedSummary = new InvoiceSummary(3, 45);
+        InvoiceSummary summary = invoiceService.calculateFare(rides);
+        Assert.assertEquals(expectedSummary, summary);
     }
 }
 
